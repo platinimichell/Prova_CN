@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locadora de Veículos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Início</a></li>
+                <li><a href="/adicionar_veiculo">Adicionar Novo Veículo</a></li>
+                <li><a href="/clientes">Gerenciar Clientes</a></li>
+                <li><a href="/locacoes">Gerenciar Locações</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Locadora de Veículos</h1>
+
+        <h2>Veículos Disponíveis</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Ano</th>
+                    <th>Placa</th>
+                    <th>Preço</th>
+                    <th>Disponibilidade</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for veiculo in veiculos %}
+                <tr>
+                    <td>{{ veiculo[1] }}</td>
+                    <td>{{ veiculo[2] }}</td>
+                    <td>{{ veiculo[3] }}</td>
+                    <td>{{ veiculo[4] }}</td>
+                    <td>{{ veiculo[5] }}</td>
+                    <td>{{ 'Disponível' if veiculo[6] else 'Indisponível' }}</td>
+                    <td>
+                        <a href="/editar_veiculo/{{ veiculo[0] }}">Editar</a> |
+                        <form action="/excluir_veiculo/{{ veiculo[0] }}" method="POST">
+                            <button type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>© 2025 Locadora de Veículos</p>
+    </footer>
+</body>
+</html>

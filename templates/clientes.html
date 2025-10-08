@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Lista de Clientes</h1>
+    <a href="/adicionar_cliente">Adicionar Novo Cliente</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Endereço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente[0] }}</td>
+                <td>{{ cliente[1] }}</td>
+                <td>{{ cliente[2] }}</td>
+                <td>{{ cliente[3] }}</td>
+                <td>{{ cliente[4] }}</td>
+                <td>
+                    <a href="/editar_cliente/{{ cliente[0] }}">Editar</a>
+                    <form action="/excluir_cliente/{{ cliente[0] }}" method="POST" >
+                        <button type="submit">Excluir</button>
+                    </form>
+                    <a href="/historico_locacoes/{{ cliente[0] }}">Histórico de Locações</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/">Voltar ao início</a>
+</body>
+</html>

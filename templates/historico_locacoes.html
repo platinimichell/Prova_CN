@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Locações</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Histórico de Locações</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Data Início</th>
+                <th>Data Fim</th>
+                <th>Veículo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for locacao in locacoes %}
+            <tr>
+                <td>{{ locacao[0] }}</td>
+                <td>{{ locacao[1] }}</td>
+                <td>{{ locacao[2] }} {{ locacao[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/clientes">Voltar</a> <br>
+    <a href="/">Voltar ao início</a>
+</body>
+</html>

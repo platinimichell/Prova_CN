@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locações Cadastradas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Início</a></li>
+                <li><a href="/locacoes">Gerenciar Locações</a></li>
+                <li><a href="/adicionar_locacao">Cadastrar Locações</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Locações Cadastradas</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Veículo</th>
+                    <th>Cliente</th>
+                    <th>Data Início</th>
+                    <th>Data Fim</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for locacao in locacoes %}
+                <tr>
+                    <td>{{ locacao[1] }}</td>
+                    <td>{{ locacao[2] }}</td>
+                    <td>{{ locacao[3] }}</td>
+                    <td>{{ locacao[4] }}</td>
+                    <td>{{ locacao[5] }}</td>
+                    <td>
+                        <a href="/editar_locacao/{{ locacao[0] }}">Editar</a>
+                        <form action="/excluir_locacao/{{ locacao[0] }}" method="POST">
+                            <button type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

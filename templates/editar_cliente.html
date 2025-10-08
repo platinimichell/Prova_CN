@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Cliente</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Editar Cliente</h1>
+    <form action="/editar_cliente/{{ cliente[0] }}" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="{{ cliente[1] }}" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ cliente[2] }}" required><br>
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" value="{{ cliente[3] }}"><br>
+
+        <label for="endereco">Endereço:</label>
+        <textarea id="endereco" name="endereco">{{ cliente[4] }}</textarea><br>
+
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="/clientes">Voltar</a> <br>
+    <a href="/">Voltar ao início</a>
+</body>
+</html>

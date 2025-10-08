@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Lição</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Início</a></li>
+                <li><a href="/locacoes">Gerenciar Locações</a></li>
+                <li><a href="/adicionar_locacao">Cadastrar Locações</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Editar Locação</h1>
+        <form method="POST">
+            <label for="veiculo_id">Selecione o Veículo:</label>
+            <select name="veiculo_id" id="veiculo_id" required>
+                {% for veiculo in veiculos %}
+                <option value="{{ veiculo[0] }}" {% if veiculo[0] == locacao[1] %} selected {% endif %}>{{ veiculo[2] }} {{ veiculo[1] }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="cliente_id">Selecione o Cliente:</label>
+            <select name="cliente_id" id="cliente_id" required>
+                {% for cliente in clientes %}
+                <option value="{{ cliente[0] }}" {% if cliente[0] == locacao[2] %} selected {% endif %}>{{ cliente[1] }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="data_inicio">Data de Início:</label>
+            <input type="datetime-local" name="data_inicio" value="{{ locacao[3] }}" required>
+
+            <label for="data_fim">Data de Término:</label>
+            <input type="datetime-local" name="data_fim" value="{{ locacao[4] }}" required>
+
+            <label for="valor">Valor da Locação:</label>
+            <input type="text" name="valor" value="{{ locacao[5] }}" required>
+
+            <button type="submit">Atualizar Locação</button>
+        </form>
+    </main>
+</body>
+</html>
