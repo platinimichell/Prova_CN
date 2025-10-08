@@ -46,7 +46,7 @@ def adicionar_veiculo():
     return render_template('adicionar_veiculo.html')
 
 # Página de edição de veículos
-@app.route('/editar/<int:id>', methods=['GET', 'POST'])
+@app.route('/editar_veiculo/<int:id>', methods=['GET', 'POST'])
 def editar_veiculo(id):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -198,7 +198,7 @@ def locacoes():
     return render_template('locacoes.html', locacoes=locacoes)
 
 
-@app.route('/editar_locacao/<int:id>', methods=['GET', 'POST'])
+@app.route('/editar_locacoes/<int:id>', methods=['GET', 'POST'])
 def editar_locacao(id):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -211,7 +211,7 @@ def editar_locacao(id):
         cursor.execute('SELECT * FROM clientes')
         clientes = cursor.fetchall()
         conn.close()
-        return render_template('editar_locacao.html', locacao=locacao, veiculos=veiculos, clientes=clientes)
+        return render_template('editar_locacoes.html', locacao=locacao, veiculos=veiculos, clientes=clientes)
 
     # Se for POST (formulário enviado)
     veiculo_id = request.form['veiculo_id']
